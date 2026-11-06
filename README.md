@@ -1,0 +1,1 @@
+# ZTerraIQ_Gofa_Landslide_Intelligence
