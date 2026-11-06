@@ -1,0 +1,62 @@
+> # =========================================================================
+> # PROJECT ONE: GAMO/GOFA ZONE LANDSLIDE ANTECEDENT CONDITIONS ANALYSIS
+> # PHASE 6 (COLOR FIX): HIGH-CONTRAST RED-BLACK-YELLOW PRESENTATION MATRIX
+> # =========================================================================
+> 
+> # Step 1: Open the required visualization package
+> library(ggplot2)
+> 
+> # Step 2: Ingest the exact local CSV data file shared by Dagim
+> # Run this line and choose your 'Gofa_Landslide_Antecedent_Environmental_Data_2026.csv'
+> print("=== ACTION REQUIRED: DOUBLE-CLICK YOUR GOFA DISASTER CSV FILE IN THE POP-UP ===")
+[1] "=== ACTION REQUIRED: DOUBLE-CLICK YOUR GOFA DISASTER CSV FILE IN THE POP-UP ==="
+> gofa_real_data <- read.csv(file.choose())
+> 
+> # Step 3: Map variables matching your uploaded file structure exactly
+> # X = slope incline, Y = rain volume, Color & Size = height metrics
+> gofa_high_contrast_plot <- ggplot(gofa_real_data, aes(x = slope_deg, y = rainfall_mm, color = elevation_m, size = elevation_m)) +
++   
++   # Draw data points with strong contrast limits so they do not blend together
++   geom_point(alpha = 0.95) +
++   
++   # Lay down a solid bright blue mathematical trend line to slice through the dark points cleanly
++   geom_smooth(method = "lm", color = "#0000FF", se = TRUE, size = 1.2, inherit.aes = FALSE, aes(x = slope_deg, y = rainfall_mm)) +
++   
++   # Apply your explicit Red, Black, and Yellow hazard spectrum color choice
++   # Low points = Black, Mid-tier = Yellow, Critical mountain peaks = Red
++   scale_color_gradientn(colors = c("black", "yellow", "red"), name = "Elevation Tiers (meters)") +
++   
++   # Style the scale circles so larger dots signify higher environmental elevation
++   scale_size_continuous(range = c(1.5, 4.5), name = "Topographic Scale (m)") +
++   
++   # Customize the text layout headers explicitly for your portfolio README
++   labs(
++     title = "High-Contrast Gamo Zone Environmental Risk Matrix",
++     subtitle = "Factual Plotting: Satellite Hillside Gradients vs. Accumulated Precipitation (March 2026)",
++     x = "Hillside Slope Gradient (Degrees) — From SRTM Topography Sensor",
++     y = "Accumulated Rain Saturation Volume (CHIRPS mm) — Extreme Storm Gauge"
++   ) +
++   
++   # Lock a pristine, clear reporting background on the screen grid canvas
++   theme_minimal() +
++   theme(
++     plot.title = element_text(face = "bold", size = 14, color = "#111111"),
++     plot.subtitle = element_text(size = 11, color = "#333333"),
++     axis.title = element_text(face = "bold", size = 11),
++     legend.title = element_text(face = "bold", size = 10),
++     legend.background = element_rect(fill = "#F8F9FA", color = "#BBBBBB"), # Light grey legend panel frame
++     panel.grid.major = element_line(color = "#EAEAEA"),
++     panel.grid.minor = element_blank()
++   )
+> 
+> # Step 4: Draw the custom color graphic instantly onto your laptop layout panel
+> print(gofa_high_contrast_plot)
+`geom_smooth()` using formula = 'y ~ x'
+> 
+> # Step 5: Save the high-contrast presentation asset directly to your drive folder
+> ggsave("gofa_high_contrast_hazard_plot.png", plot = gofa_high_contrast_plot, width = 8, height = 6, dpi = 300)
+`geom_smooth()` using formula = 'y ~ x'
+> 
+> print("=== WORKSPACE STATUS: HIGH-CONTRAST LEGEND GRAPH SAVED TO LAPTOP ===")
+[1] "=== WORKSPACE STATUS: HIGH-CONTRAST LEGEND GRAPH SAVED TO LAPTOP ==="
+> 
